@@ -1,0 +1,66 @@
+
+Current ATM money is 4544484
+Current ATM money is 4544484
+CustomerId: 9, balance: 68
+Insufficient Balance On Account
+Insufficient Balance On Account
+Current ATM money is 4544484
+Current ATM money is 4544484
+CustomerId: Phuc, balance: 3242342
+Insufficient Balance On Account
+Current ATM money is 4544441
+Current ATM money is 4544484
+Current ATM money is 4544484
+Current ATM money is 4544484
+CustomerId: vhfgh, balance: 155
+Insufficient Balance On Account
+Insufficient Balance On Account
+Current ATM money is 4544484
+Current ATM money is 4544484
+CustomerId: fád, balance: 31231
+Insufficient Balance On Account
+Insufficient Balance On Account
+Current ATM money is 4544484
+Current ATM money is 4544484
+CustomerId: fạksd, balance: 42342
+Insufficient Balance On Account
+Current ATM money is 4544442
+Current ATM money is 4544484
+CustomerId: àdsfád, balance: 2434
+Insufficient Balance On Account
+Current ATM money is 4544061
+Current ATM money is 4544484
+CustomerId: rưẻwẻ, balance: 2342
+Current ATM money is 4543904
+Current ATM money is 4544484
+CustomerId: Pham Duy Phuc, balance: 3123
+Current ATM money is 4544131
+Current ATM money is 4544484
+CustomerId: Pham Duy Phuc, balance: 12222222222
+Insufficient Balance On Account
+Current ATM money is 4433373
+Current ATM money is 4544484
+Current ATM money is 4544484
+CustomerId: fdsạ, balance: 243
+Insufficient Balance On Account
+Current ATM money is 4544727
+Current ATM money is 4544484
+CustomerId: fsád, balance: 323
+Insufficient Balance On Account
+Current ATM money is 4576807
+Current ATM money is 4544484
+CustomerId: fskd, balance: 432
+Current ATM money is 4544484
+Current ATM money is 4544484
+CustomerId: bdnss, balance: 2322332
+Current ATM money is 4576764
+Current ATM money is 4544484
+CustomerId: fádhjfád, balance: 132
+Current ATM money is 4544484
+Current ATM money is 4544484
+CustomerId: fsdfds, balance: 42324
+Current ATM money is 4544502
+Current ATM money is 4544484
+CustomerId: Pham Duy Phuc, balance: 12345
+Insufficient Balance On Account
+Current ATM money is 4867716
