@@ -1,15 +1,13 @@
 package com.sapo.edu;
 
-import com.sapo.edu.dao.CategoryRepository;
-import com.sapo.edu.dao.ProductRepository;
+import com.sapo.edu.repository.CategoryRepository;
+import com.sapo.edu.repository.ProductRepository;
 import com.sapo.edu.entity.Category;
 import com.sapo.edu.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.text.SimpleDateFormat;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {

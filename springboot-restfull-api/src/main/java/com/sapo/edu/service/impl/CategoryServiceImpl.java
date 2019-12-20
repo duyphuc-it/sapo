@@ -1,10 +1,10 @@
 package com.sapo.edu.service.impl;
 
-import com.sapo.edu.dao.CategoryRepository;
-import com.sapo.edu.dao.ProductRepository;
+import com.sapo.edu.repository.CategoryRepository;
 import com.sapo.edu.entity.Category;
 import com.sapo.edu.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,8 +16,9 @@ public class CategoryServiceImpl implements CategoryService {
     CategoryRepository categoryRepository;
 
     @Override
-    public List<Category> findAllCategory() {
-        return categoryRepository.findAll();
+    public List<Category> findAllCategory(int page, int size) {
+
+        return categoryRepository.findAll(PageRequest.of(page, 2)).getContent();
     }
 
     @Override
@@ -32,6 +33,6 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void deleteCategory(int id) {
-
+        categoryRepository.deleteById(id);
     }
 }
