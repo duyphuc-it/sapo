@@ -10,7 +10,7 @@ public interface CategoryService {
 
     public Optional<Category> findCategoryById(int id);
 
-    public void saveCategory(Category category);
+    public Category saveCategory(Category category);
 
-    public void deleteCategory(int id);
+    public void deleteCategoryById(int id);
 }

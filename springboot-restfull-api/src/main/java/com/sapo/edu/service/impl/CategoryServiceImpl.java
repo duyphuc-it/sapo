@@ -5,7 +5,9 @@ import com.sapo.edu.entity.Category;
 import com.sapo.edu.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +20,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<Category> findAllCategory(int page, int size) {
 
-        return categoryRepository.findAll(PageRequest.of(page, 2)).getContent();
+        return categoryRepository.findAll(PageRequest.of(page, 2, Sort.by("name").descending())).getContent();
     }
 
     @Override
@@ -27,12 +29,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void saveCategory(Category category) {
-        categoryRepository.save(category);
+    public Category saveCategory(Category category) {
+        return categoryRepository.save(category);
     }
 
     @Override
-    public void deleteCategory(int id) {
+    public void deleteCategoryById(int id) {
         categoryRepository.deleteById(id);
     }
 }

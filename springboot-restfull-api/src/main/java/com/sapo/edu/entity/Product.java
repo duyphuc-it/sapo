@@ -1,8 +1,12 @@
 package com.sapo.edu.entity;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -13,12 +17,14 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotEmpty(message = "Please provide a name")
     @Column(name = "name")
     private String name;
 
     @Column(name = "link_image")
     private String linkImage;
 
+    @NotNull(message = "Please provide price")
     @Column(name = "price")
     private BigDecimal price;
 
@@ -31,7 +37,7 @@ public class Product implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "category_id")
+    @Column(name = "category_id", nullable = false)
     private int categoryId;
 
     public int getId() {

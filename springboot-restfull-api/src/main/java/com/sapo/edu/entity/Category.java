@@ -1,6 +1,8 @@
 package com.sapo.edu.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -13,6 +15,7 @@ public class Category implements Serializable {
     private int id;
 
     @Column(name = "name", nullable = false)
+    @NotEmpty(message = "Please provide a name")
     private String name;
 
     @Column(name = "create_at", nullable = false)

@@ -1,24 +1,26 @@
 package com.sapo.edu.controller;
 
 import com.sapo.edu.entity.Category;
-import com.sapo.edu.exeption.ResourceNotFoundException;
+import com.sapo.edu.exception.NotFoundException;
 import com.sapo.edu.service.CategoryService;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import java.sql.Timestamp;
 import java.util.List;
-import java.util.Optional;
 
+
+@Validated
 @RestController
 @RequestMapping(value = {"/admin/category"})
 public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
-    private final int  SIZE_RECORD = 2;
+    private final int SIZE_RECORD = 2;
 
     @GetMapping
     public List<Category> getCategoryList(@RequestParam(name = "page", defaultValue = "0") int page) {
@@ -26,32 +28,32 @@ public class CategoryController {
     }
 
     @GetMapping(value = {"/{id}"})
-    public ResponseEntity<?> findCategoryById(@PathVariable("id") int id) throws ResourceNotFoundException {
-        Optional<Category> category = categoryService.findCategoryById(id);
-//        return category.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-        if(category.isPresent()) {
-            return new ResponseEntity<Category>(category.get(), HttpStatus.OK);
-        }
-        else {
-//            throw new ResourceNotFoundException("not oke");
-            return new ResponseEntity<Category>(HttpStatus.BAD_REQUEST);
-        }
+    public Category findCategoryById(@PathVariable("id") int id) {
+        return categoryService.findCategoryById(id).orElseThrow(() -> new NotFoundException("Category"));
     }
 
     @PostMapping
-    public ResponseEntity<Category> addCategory(@RequestBody Category category) {
-        categoryService.saveCategory(category);
-        return new ResponseEntity<Category>(category, HttpStatus.OK);
+    public Category addCategory(@Valid @RequestBody Category category) {
+        category.setCreate_at(new Timestamp(System.currentTimeMillis()));
+        return categoryService.saveCategory(category);
     }
 
     @PutMapping(value = {"/{id}"})
-    public ResponseEntity<Category> updateCategory(@PathVariable("id") int idCategory,@RequestBody Category category) {
-        boolean isEmpty = categoryService.findCategoryById(idCategory).isPresent();
-        if(isEmpty) {
-            category.setId(idCategory);
-            categoryService.saveCategory(category);
-            return new ResponseEntity<Category>(category, HttpStatus.OK);
+    public Category updateCategory(@PathVariable("id") int idCategory, @Valid @RequestBody Category category) {
+        if (categoryService.findCategoryById(idCategory).isPresent()) {
+            category.setModified_at(new Timestamp(System.currentTimeMillis()));
+            return categoryService.saveCategory(category);
+        } else {
+            throw new NotFoundException("Id category");
         }
-        return new ResponseEntity<Category>(HttpStatus.NOT_FOUND);
+    }
+
+    @DeleteMapping(value = {"/{id}"})
+    public void deleteCategory(@PathVariable("id") int idCategory){
+        if(categoryService.findCategoryById(idCategory).isPresent()) {
+            categoryService.deleteCategoryById(idCategory);
+        }else {
+            throw new NotFoundException("Id category");
+        }
     }
 }

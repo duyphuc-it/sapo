@@ -1,14 +1,16 @@
 package com.sapo.edu.controller;
 import com.sapo.edu.entity.Product;
+import com.sapo.edu.exception.NotFoundException;
 import com.sapo.edu.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
+
+@Validated
 @RestController
 @RequestMapping(value = {"/admin/product"})
 public class ProductController {
@@ -18,30 +20,36 @@ public class ProductController {
     private final int  SIZE_RECORD = 2;
 
     @RequestMapping
-    public List<Product> getAllProduct(@RequestParam(name = "page", defaultValue = "0") int page) {
+    public List<Product> getAllProduct( @RequestParam(name = "page", defaultValue = "0") int page) {
         return productService.findAllProduct(page, SIZE_RECORD);
     }
 
     @GetMapping(value = {"/{id}"})
-    public ResponseEntity<?> findCategoryById(@PathVariable("id") int idProduct) {
-        Optional<Product> product = productService.findProductById(idProduct);
-        return product.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public Product findCategoryById(@PathVariable("id") int idProduct) {
+        return productService.findProductById(idProduct).orElseThrow(() -> new NotFoundException("Product"));
     }
 
     @PostMapping
-    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
-        productService.saveProduct(product);
-        return new ResponseEntity<Product>(product, HttpStatus.OK);
+    public Product addProduct(@Valid @RequestBody Product product) {
+        if(productService.findProductById(product.getCategoryId()).isPresent()) {
+            return productService.saveProduct(product);
+        }else {
+            throw new NotFoundException("Id category");
+        }
     }
 
     @PutMapping(value = {"/{id}"})
-    public ResponseEntity<Product> updateCategory(@PathVariable("id") int idProduct,@RequestBody Product product) {
-        boolean isEmpty = productService.findProductById(idProduct).isPresent();
-        if(isEmpty) {
-            product.setId(idProduct);
-            productService.saveProduct(product);
-            return new ResponseEntity<Product>(product, HttpStatus.OK);
+    public Product updateCategory(@PathVariable("id") int idProduct, @Valid @RequestBody Product product) {
+        product.setId(idProduct);
+        return productService.saveProduct(product);
+    }
+
+    @DeleteMapping(value = {"/{id}"})
+    public void deleteCategory(@PathVariable("id") int idCategory) {
+        if(productService.findProductById(idCategory).isPresent()) {
+            productService.deleteProduct(idCategory);
+        }else {
+            throw new NotFoundException("Id product");
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
