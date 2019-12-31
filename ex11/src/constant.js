@@ -1,4 +1,5 @@
 export const USER_PASSWORD={
-    user:'phuc@gmail.com' ,
-    password:'123'
+    username:'duyphuc' ,
+    password:'123',
+    name:'Phạm Duy Phúc'
 }

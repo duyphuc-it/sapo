@@ -1,41 +1,46 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 class FormLogin extends Component {
     render() {
         return (
             <div className="box-login">
                 <h1>Login</h1>
-                <form action="#">
+                <form>
                     <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">Email address</label>
+                        <label htmlFor="username">Username</label>
                         <input
                             type="text"
                             className="form-control"
-                            onChange={(e =>this.props.onChangeUser(e))}
+                            onChange={(e => this.props.onChangeUser(e))}
                             aria-describedby="emailHelp"
                             name='username'
                             autoComplete='off'
-                            placeholder="Enter email"
-                            ref={ (username) => { this.username = username }}
+                            placeholder="Enter username"
+                            id="username"
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="exampleInputPassword1">Password</label>
+                        <label htmlFor="password">Password</label>
                         <input
                             type="password"
                             className="form-control"
                             autoComplete='off'
                             name='password'
-                            onChange={(e =>this.props.onChangePassword(e))}
+                            id="password"
+                            onChange={(e => this.props.onChangePassword(e))}
                             placeholder="Password"
                         />
                     </div>
+                    <div className="error" >
+                       {this.props.error}
+                    </div>
                     <div className="submit">
-                        <button type="submit" className="btn btn-primary" onClick={() => this.props.checkLogin()}>
+                        <button  className="btn btn-primary" onClick={(e) => this.props.checkLogin(e)}>
                             Login
                         </button>
                     </div>
-                </form>
+                    </form>
+                
             </div>
         );
     }
