@@ -1,0 +1,62 @@
+[
+    {
+        "id" : "1",
+        "name" : "Iphone 5s",
+        "linkImage": "C:\\",
+        "price": 2000,
+        "amount": 20,
+        "unitSale": 10,
+        "description": "Vẫn cứ là oke",
+        "categoryId": 1
+    },
+    {
+        "id" : "2",
+        "name" : "Note 10",
+        "linkImage": "C:\\",
+        "price": 2000,
+        "amount": 20,
+        "unitSale": 10,
+        "description": "Vẫn cứ là oke",
+        "categoryId": 2
+    },
+    {
+        "id" : "3",
+        "name" : "Redmi note 8 pro",
+        "linkImage": "C:\\",
+        "price": 2000,
+        "amount": 20,
+        "unitSale": 10,
+        "description": "Vẫn cứ là oke",
+        "categoryId": 3
+    },
+    {
+        "id" : "4",
+        "name" : "F1s",
+        "linkImage": "C:\\",
+        "price": 2000,
+        "amount": 20,
+        "unitSale": 10,
+        "description": "Vẫn cứ là oke",
+        "categoryId": 4
+    },
+    {
+        "id" : "5",
+        "name" : "Ốp bồ phét sừn nồ",
+        "linkImage": "C:\\",
+        "price": 2000,  
+        "amount": 20,
+        "unitSale": 10,
+        "description": "Vẫn cứ là oke",
+        "categoryId": 4
+    },
+    {
+        "id" : "6",
+        "name" : "Iphone 5s",
+        "linkImage": "C:\\",
+        "price": 2000,
+        "amount": 20,
+        "unitSale": 10,
+        "description": "Vẫn cứ là oke",
+        "categoryId": 1
+    }
+]

@@ -1,0 +1,32 @@
+[
+    {   
+        "id": "1",
+        "name": "Apple Iphone",
+        "createAt" : "2020-01-02",
+        "modifiedAt": "2020-01-02"
+    },
+    {   
+        "id": "2",
+        "name": "Samsung",
+        "createAt" : "2020-01-02",
+        "modifiedAt": "2020-01-02"
+    },
+    {   
+        "id": "3",
+        "name": "Xiaomi",
+        "createAt" : "2020-01-02",
+        "modifiedAt": "2020-01-02"
+    },
+    {   
+        "id": "4",
+        "name": "Oppo",
+        "createAt" : "2020-01-02",
+        "modifiedAt": "2020-01-02"
+    },
+    {   
+        "id": "5",
+        "name": "Realme",
+        "createAt" : "2020-01-02",
+        "modifiedAt": "2020-01-02"
+    }
+]
