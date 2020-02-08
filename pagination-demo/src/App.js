@@ -1,10 +1,8 @@
-import React, { Component } from 'react'
-import Pagination from 'react-bootstrap/Pagination';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { Component } from "react";
+import Pagination from "react-js-pagination";
 import axios from 'axios';
 
-// npm install react-bootstrap bootstrap
-
+// npm install react-js-pagination
 
 export default class App extends Component {
   constructor(props) {
@@ -12,13 +10,13 @@ export default class App extends Component {
     this.state = {
       activePage: 1,
       size: 1,
-      totalPages: 0,
+      totalItemsCount: 0,
       data: []
     }
   }
 
   componentDidMount() {
-    this.getDataApi();
+    this.getDataApi()
   }
 
   getDataApi = () => {
@@ -29,27 +27,34 @@ export default class App extends Component {
         console.log(res.data)
         this.setState({
           data: dataJson.listResult,
-          totalPages: dataJson.count
+          totalItemsCount: dataJson.count
         })
       })
       .catch(error => console.log(error));
   }
 
+  handlePageChange = (pageNumber) => {
+    console.log(`active page is ${pageNumber}`);
+    this.setState({ activePage: pageNumber }, () => this.getDataApi());
+  }
+
   render() {
-    console.log(this.state.totalPages)
+    console.log("state",this.state.data)
     return (
       <div>
-        <Pagination>
-          <Pagination.First onClick={() => this.setState({activePage:1}, () => this.getDataApi())}/>
-          <Pagination.Prev onClick={() => this.setState((prevState) => ({ activePage: prevState.activePage === 1 ? 1 : prevState.activePage - 1 }), () => this.getDataApi())} />
-          <Pagination.Item active={this.state.activePage === 1} onClick={() => { this.setState({ activePage: 1 }, () => this.getDataApi()) }}>{1}</Pagination.Item>
-          <Pagination.Item active={this.state.activePage === 2} onClick={() => { this.setState({ activePage: 2 }, () => this.getDataApi()) }}>{2}</Pagination.Item>
-          <Pagination.Item active={this.state.activePage === 3} onClick={() => { this.setState({ activePage: 3 }, () => this.getDataApi()) }}>{3}</Pagination.Item>
-          <Pagination.Item active={this.state.activePage === 4} onClick={() => { this.setState({ activePage: 4 }, () => this.getDataApi()) }}>{4}</Pagination.Item>
-          <Pagination.Next onClick={() => this.setState((prevState) => ({ activePage: prevState.activePage === prevState.totalPages ? prevState.totalPages : prevState.activePage + 1 }), () => this.getDataApi())}/>
-          <Pagination.Last onClick={() => this.setState((prevState) => ({activePage: prevState.totalPages}), () => this.getDataApi())}/>
-        </Pagination>
+        <div>
+          {this.state.data === []?console.log("rỗng") : "có dữ liệu"}
+        </div>
+        <Pagination
+          activePage={this.state.activePage}
+          itemsCountPerPage={this.state.size}  //size số bản ghi 1 trang
+          totalItemsCount={this.state.totalItemsCount}   // tổng số bản ghi
+          pageRangeDisplayed={5}  // số nút hiển thị
+          onChange={this.handlePageChange}
+          itemClass={"page-item"}
+          linkClass={"page-link"}
+        />
       </div>
-    )
+    );
   }
 }
